@@ -79,10 +79,13 @@ def one_download(link, mode, directory, root):
     loading.protocol("WM_DELETE_WINDOW", lambda: None)
     loading.geometry(adds.sizing_positioning((1000, 200), adds.win_center_pos(loading, (1000,200))))
     root.attributes("-disabled", True)
-    progressionText = Label(loading, text='Starting Task...', font=('Arial', 15))
-    progressionBar = ttk.Progressbar(loading, variable=progression, maximum=100)
-    progressionText.pack(ipady=30)
-    progressionBar.pack()
+    body = Frame(loading)
+    progressionText = Label(body, text='Starting Task...', font=('Arial', 15))
+    progressionBar = ttk.Progressbar(body, variable=progression, maximum=100)
+    progressionText.grid(row=0)
+    progressionBar.grid(row=1)
+    body.grid_rowconfigure()
+    body.pack
     def work():
         f = None
         try:
