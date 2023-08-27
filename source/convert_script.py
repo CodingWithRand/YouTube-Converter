@@ -85,7 +85,7 @@ def one_download(link, mode, directory, root):
     progressionText.grid(row=0)
     progressionBar.grid(row=1)
     body.grid_rowconfigure()
-    body.pack
+    body.pack 
     def work():
         f = None
         try:
