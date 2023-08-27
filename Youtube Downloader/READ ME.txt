@@ -1,0 +1,16 @@
+Thank you so much to download my YouTube converter and downloader program.
+
+This program create in Python programming language
+I use the pytube library for the conversion system and tkinter library for the whole UI.
+Right now the progress on fixing some mistakes and glitches is probably 95% which mean the program can be mostly used without facing any problem!
+
+
+Sub to my channel pls
+Rand0MTutoriaL.
+
+
+Version Update Log
+
+v 1.0 - Released the program
+v 1.0.1 - Fixed pytube conversion bug, and fixed problem on downloading the video that has the unsupported character in the file name
+v 1.1 - Completely fixed pytube conversion bug, playlist conversion is fully available, and fixed some minor bugs.
