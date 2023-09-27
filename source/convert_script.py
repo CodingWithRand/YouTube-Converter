@@ -22,7 +22,7 @@ def check_availability(asset):
 
 
 def replace_unsupported_char(string):
-    if re.search('[/\\"*|?:<>]', string, re.UNICODE):
+    if re.search(r'[/\\"*|?:<>]', string, re.UNICODE):
         string = re.sub(r'[/\\"*|?:<>]', "", string)
     return string
 
@@ -123,6 +123,7 @@ def one_download(link, mode, directory, root):
     def work(): 
         global f
         global video
+        global output_ext
         try:
             def retrieve_link(*args, **kwargs): 
                 global f
@@ -151,27 +152,28 @@ def one_download(link, mode, directory, root):
             raiseErr("003")
             return
 
-        # try:
-        #     file_dir = directory
-        #     f.title = replace_unsupported_char(f.title)
-        #     file_sorting(video, file_dir, f.title, output_ext, False)
-        #     # progressionBar.pack()
-        #     # progressionText.pack()
-        # except WindowsError:
-        #     print("File's name doesn't support, but it downloaded successful anyway.")
-        #     mbox.showwarning("System Warning", "File's name doesn't support, your file has been downloaded! (Code: 3009)")
-        # except FileExistsError:
-        #     print("The file is already exist!")
-        #     mbox.showerror("System Error", "The file is already exist!")
-        # except PermissionError:
-        #     print("You don't have permission to download into this folder")
-        #     mbox.showerror("System Error", "You don't have permission to download into this folder!")
-        # except Exception as e:
-        #     traceback_str = traceback.format_exc()
-        #     print("An Error occurred")
-        #     mbox.showerror("System Error", "An unknown error occurred!")
-        #     mbox.showerror("System Error", "Detail: " + str(e) if e is not None else "No error details available.")
-        #     mbox.showerror("System Error", f"{traceback_str}")
+        try:
+            def download_video(vid, vidTitle):
+                global output_ext
+                file_dir = directory
+                vidTitle = replace_unsupported_char(vidTitle)
+                file_sorting(vid, file_dir, vidTitle, output_ext, False)
+            real_progressing(f"Downloading {"an" if re.match(r'^[aeiou]', mode, re.IGNORECASE) else "a"} {mode.lower()}", 1000, 0, download_video, {'vid': video, 'vidTitle': f.title})
+        except WindowsError:
+            print("File's name doesn't support, but it downloaded successful anyway.")
+            mbox.showwarning("System Warning", "File's name doesn't support, your file has been downloaded! (Code: 3009)")
+        except FileExistsError:
+            print("The file is already exist!")
+            mbox.showerror("System Error", "The file is already exist!")
+        except PermissionError:
+            print("You don't have permission to download into this folder")
+            mbox.showerror("System Error", "You don't have permission to download into this folder!")
+        except Exception as e:
+            traceback_str = traceback.format_exc()
+            print("An Error occurred")
+            mbox.showerror("System Error", "An unknown error occurred!")
+            mbox.showerror("System Error", "Detail: " + str(e) if e is not None else "No error details available.")
+            mbox.showerror("System Error", f"{traceback_str}")
 
     def catch_error():
         global err_code
