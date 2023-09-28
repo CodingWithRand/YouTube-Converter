@@ -1,7 +1,7 @@
 # Converter Functions
 from convert_script import *
 # UI Functions
-import yt_ui
+from yt_ui import Constructed_UI2
 from tkinter import *
 import addition_script as adds
 
@@ -31,12 +31,11 @@ window.geometry(adds.sizing_positioning((800, 400), adds.win_center_pos(window, 
 window.iconbitmap("icon.ico")
 
 # Variable
-originfont = ("Arial", 15)
 opt = ["Select Option", "Video", "Audio", "Playlist (Video)", "Playlist (Audio)"]
 defaultdirtext = StringVar()
 selectoption = StringVar()
 
-yt_ui.Constructed_UI2(window, originfont, defaultdirtext, selectoption, opt)
+Constructed_UI2(window, defaultdirtext, selectoption, opt)
 
 # title = ""
 # counter = 1
