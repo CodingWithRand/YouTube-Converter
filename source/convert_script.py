@@ -145,7 +145,7 @@ def one_download(link, mode, directory, root):
                     global video
                     check_availability(yt_v)
                     video = f.streams.get_highest_resolution()
-                real_progressing("Check for the video availability...", 200, 2, get_video, {'yt_v': f})
+                real_progressing(f"Checking for the {mode.lower()} availability...", 200, 2, get_video, {'yt_v': f})
             except Exception: 
                 raiseErr("3150")
                 # raise Exception
@@ -180,13 +180,18 @@ def one_download(link, mode, directory, root):
                 return
 
         err_code = None
+        mbox.showinfo("System", "Your conversion is successfully completed!")
+                
+        stop_flag["catch-err"].set()
+        stop_flag["work"].set()
+        stop_flag["fp"].set()
         return
 
     def catch_error():
         global err_code
         sync_event.wait()
         if not stop_flag["catch-err"].is_set():
-            if err_code:
+            if err_code is not None:
                 if err_code == "1404": mbox.showerror("System Error", f"Invalid YouTube Link! (Error Code: {err_code})")
                 elif err_code == "2404": mbox.showerror("System Error", f"Invalid File Path! (Error Code: {err_code})")
                 elif err_code == "3150": mbox.showerror("System Error", f"The video is currently unavailable, We're sorry about that! (Error Code: {err_code})")
@@ -194,8 +199,6 @@ def one_download(link, mode, directory, root):
                 elif err_code == "0058": mbox.showerror("System Error", f"The file is already exist! (Error Code: {err_code})")
                 elif err_code == "4003": mbox.showerror("System Error", f"You don't have permission to download into this folder! (Error Code: {err_code})")
                 elif err_code == "9999": mbox.showerror("System Error", f"An unknown error occurred! (Error Code: {err_code})")
-            else: 
-                mbox.showinfo("System", "Your conversion is successfully completed!")
                 
         stop_flag["catch-err"].set()
         stop_flag["work"].set()

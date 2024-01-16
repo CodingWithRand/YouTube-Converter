@@ -3,9 +3,13 @@
 /Video
 /Audio
 /Playlist
+/converter.spec
+/build
+/dist
 
 # Source code
 
+/source/__pycache__
 /source/pytube-master
 /source/Video
 /source/Audio
