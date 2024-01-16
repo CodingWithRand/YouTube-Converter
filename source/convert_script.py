@@ -93,6 +93,7 @@ def one_download(link, mode, directory, root):
                     sleep(0.05)
             return
         fp = threading.Thread(target=body)
+        fp.daemon = True
         fp.start()
 
     def raiseErr(errCode):
@@ -126,11 +127,13 @@ def one_download(link, mode, directory, root):
                 real_progressing("Retrieving YouTube link...", 100, 2, retrieve_link)
             except Exception:
                 raiseErr("1404")
-                raise Exception
+                # raise Exception
+                return
 
             if directory == "": 
                 raiseErr("2404")
-                raise Exception("Please provide file path!")
+                # raise Exception("Please provide file path!")
+                return
 
             output_ext = None
             if mode.lower() == "video":
@@ -145,35 +148,38 @@ def one_download(link, mode, directory, root):
                 real_progressing("Check for the video availability...", 200, 2, get_video, {'yt_v': f})
             except Exception: 
                 raiseErr("3150")
-                raise Exception
+                # raise Exception
+                return
 
             try:
                 def download_video(vid, vidTitle):
                     global output_ext
                     file_dir = directory
                     vidTitle = replace_unsupported_char(vidTitle)
-                    file_sorting(vid, file_dir, vidTitle, output_ext, False)
+                    file_sorting(vid, file_dir, vidTitle, output_ext)
                 real_progressing(f"Downloading the {mode.lower()}...", 1000, 1, download_video, {'vid': video, 'vidTitle': f.title})
                 UI.loading.destroy()
                 root.attributes("-disabled", False)
             except WindowsError:
                 raiseErr("3009")
-                raise WindowsError
+                # raise WindowsError
+                return
             except FileExistsError:
                 raiseErr("0058")
-                raise FileExistsError
+                # raise FileExistsError
+                return
             except PermissionError:
                 raiseErr("4003")
-                raise PermissionError
+                # raise PermissionError
+                return
             except Exception as e:
                 traceback_str = traceback.format_exc()
                 raiseErr("9999")
                 mbox.showerror("System Error", f"{traceback_str}")
-                raise e
+                # raise e
+                return
 
         err_code = None
-        stop_flag["work"].set()
-        sync_event.set()
         return
 
     def catch_error():
@@ -190,12 +196,18 @@ def one_download(link, mode, directory, root):
                 elif err_code == "9999": mbox.showerror("System Error", f"An unknown error occurred! (Error Code: {err_code})")
             else: 
                 mbox.showinfo("System", "Your conversion is successfully completed!")
-                stop_flag["catch-err"].set()
-                return
+                
+        stop_flag["catch-err"].set()
+        stop_flag["work"].set()
+        stop_flag["fp"].set()
+        sync_event.set()
+        return
     
     convert = threading.Thread(target=work)
+    convert.daemon = True
     convert.start()
     catch = threading.Thread(target=catch_error)
+    catch.daemon = True
     catch.start()
 
 

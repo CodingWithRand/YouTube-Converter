@@ -25,7 +25,7 @@ else:
         os.mkdir("Playlist/Audios")
 
 window = Tk()
-window.title("YouTube Converter")
+window.title("YouTube Converter v1.3.1")
 window.resizable(FALSE, FALSE)
 window.geometry(adds.sizing_positioning((800, 400), adds.win_center_pos(window, (800, 400))))
 window.iconbitmap("icon.ico")

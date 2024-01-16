@@ -4,6 +4,7 @@ from tkinter.filedialog import *
 from convert_script import one_download, playlist_download
 import tkinter.messagebox as mbox
 import re
+import threading
 import addition_script as adds
 
 
@@ -131,12 +132,14 @@ class bindFocus:
 
 # UI Main Functions
 
-def Constructed_UI2(window, defaultdirtext, selectoption, opt):
+def Constructed_UI2(window: Tk, defaultdirtext, selectoption, opt):
     # Head
 
     Label(window, text="Youtube Converter", font=("Comic Sans MS", 50), fg="red").pack(ipady=10, ipadx=100)
 
     # Convert section
+
+    # window.protocol("WM_DELETE_WINDOW", adds.print_thread_status) - Debug
 
     desc = Label(window, text="All kind of conversion available (Video, Audio, and Playlist)", font=("Arial Rounded MT Bold", 20))
     desc.pack(ipady=20)

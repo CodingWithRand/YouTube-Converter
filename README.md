@@ -29,4 +29,7 @@ Right now the progress on fixing some mistakes and glitches is probably 95% whic
     > - Fixed moviepy package glitches
 
 - ## *__v1.3__*
-    > - Threading downloading progress to prevent the app crash (Working on)
+    > - Create thread for downloading progress to prevent the app crash
+
+- ## *__v1.3.1__*
+    > - One video downloading progress has been threaded!

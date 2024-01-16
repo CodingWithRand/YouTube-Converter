@@ -1,5 +1,8 @@
 from tkinter import *
 from tkinter import font
+import threading
+
+# Real Usage
 
 def win_center_pos(window, win_size):
     screen_width = window.winfo_screenwidth()
@@ -10,6 +13,13 @@ def win_center_pos(window, win_size):
 
 def sizing_positioning(size, pos):
     return f"{size[0]}x{size[1]}+{pos[0]}+{pos[1]}"
+
+
+# For debug
+
+def print_thread_status():
+    for thread in threading.enumerate():
+        print(f"Thread Name: {thread.name}, Status: {'Alive' if thread.is_alive() else 'Not Alive'}")
 
 
 def show_all_font_styles():
