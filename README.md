@@ -33,3 +33,5 @@ Right now the progress on fixing some mistakes and glitches is probably 95% whic
 
 - ## *__v1.3.1__*
     > - One video downloading progress has been threaded!
+- ## *__v1.3.2__*
+    > - Playlist video downloading progress has been threaded!

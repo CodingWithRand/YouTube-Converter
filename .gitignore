@@ -9,8 +9,6 @@
 
 # Source code
 
-/source/__pycache__
-/source/pytube-master
-/source/Video
-/source/Audio
-/source/Playlist
+source/Video
+source/Audio
+source/Playlist

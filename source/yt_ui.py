@@ -105,9 +105,9 @@ def dirsection2(p, defaultdirtext, mode):
 def convert(mode, entry, dir, window):
     if re.search("Playlist", mode.get()):
         if re.search("Video", mode.get()):
-            playlist_download(entry.get(), "Video", dir)
+            playlist_download(entry.get(), "Video", dir, window)
         elif re.search("Audio", mode.get()):
-            playlist_download(entry.get(), "Audio", dir)
+            playlist_download(entry.get(), "Audio", dir, window)
     elif mode.get() == "Select Option":
         mbox.showerror("System Error", "Please select a valid conversion!")
     else:
