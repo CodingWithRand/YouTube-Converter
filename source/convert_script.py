@@ -1,4 +1,4 @@
-from pytube import *
+from pytubefix import *
 from moviepy.editor import *
 from tkinter import *
 from time import sleep
@@ -150,7 +150,7 @@ def one_download(link, mode, directory, root):
                 real_progressing(f"Checking for the {mode.lower()} availability...", 200, 2, get_video, {'yt_v': f})
             except Exception: 
                 raiseErr("3150")
-                # raise Exception
+                raise Exception
                 return
 
             try:

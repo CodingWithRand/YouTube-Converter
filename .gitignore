@@ -12,3 +12,5 @@
 source/Video
 source/Audio
 source/Playlist
+
+source/__pycache__
