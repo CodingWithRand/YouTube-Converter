@@ -29,13 +29,13 @@ Right now the progress on fixing some mistakes and glitches is probably 95% whic
     > - Fixed moviepy package glitches
 
 - ## *__v1.3__*
-    > - Create thread for downloading progress to prevent the app crash
+    > - Create thread for downloading process to prevent the app crash
 
 - ## *__v1.3.1__*
-    > - One video downloading progress has been threaded!
+    > - One video downloading process has been isolated from the main thread!
 - ## *__v1.3.2__*
-    > - Playlist video downloading progress has been threaded!
+    > - Playlist video downloading process has been isolated from the main thread!
 - ## *__v1.4__*
     > - Migrate to pytubefix
 - ## *__v1.4.1__*
-    > - Upgrade pytubefix to the latest version
+    > - Upgrade pytubefix to the latest version (8.12.0)
