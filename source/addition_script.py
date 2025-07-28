@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import font
 import threading
+import sys
+import os
 
 # Real Usage
 
@@ -52,3 +54,10 @@ def show_all_font_styles():
     frame.bind("<Configure>", lambda e, canvas=canvas: onFrameConfigure(canvas))
     fill_frame(frame)
     win.mainloop()
+
+def get_ffmpeg_path():
+    if getattr(sys, 'frozen', False):  # Running in a PyInstaller bundle
+        temp_dir = sys._MEIPASS
+        return os.path.join(temp_dir, "ffmpeg.exe")
+    else:  # Running in normal Python
+        return os.path.join(os.path.dirname(__file__), "ffmpeg.exe")

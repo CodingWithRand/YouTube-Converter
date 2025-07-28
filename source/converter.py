@@ -5,37 +5,21 @@ from yt_ui import Constructed_UI2
 from tkinter import *
 import addition_script as adds
 
-import os
-
-if not os.path.exists("Video"):
-    os.mkdir("Video")
-if not os.path.exists("Audio"):
-    os.mkdir("Audio")
-    os.mkdir("Audio/Temp_MP4_files")
-if not os.path.exists("Audio/Temp_MP4_files"):
-    os.mkdir("Audio/Temp_MP4_files")
-if not os.path.exists("Playlist"):
-    os.mkdir("Playlist")
-    os.mkdir("Playlist/Videos")
-    os.mkdir("Playlist/Audios")
-else:
-    if not os.path.exists("Playlist/Videos"):
-        os.mkdir("Playlist/Videos")
-    elif not os.path.exists("Playlist/Audios"):
-        os.mkdir("Playlist/Audios")
-
 window = Tk()
-window.title("YouTube Converter v1.4.1")
+window.title("YouTube Converter v1.5")
 window.resizable(FALSE, FALSE)
 window.geometry(adds.sizing_positioning((800, 400), adds.win_center_pos(window, (800, 400))))
 window.iconbitmap("icon.ico")
 
 # Variable
-opt = ["Select Option", "Video", "Audio", "Playlist (Video)", "Playlist (Audio)"]
-defaultdirtext = StringVar()
-selectoption = StringVar()
+conversion_opts = ["Select Conversion Option", "Video", "Audio", "Playlist (Video)", "Playlist (Audio)"]
+res_opts = ["Select Resolution", "144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p"]
 
-Constructed_UI2(window, defaultdirtext, selectoption, opt)
+defaultdirtext = StringVar()
+conversion_selected_option = StringVar()
+res_selected_option = StringVar()
+
+Constructed_UI2(window, defaultdirtext, conversion_selected_option, conversion_opts, res_selected_option, res_opts)
 
 # title = ""
 # counter = 1

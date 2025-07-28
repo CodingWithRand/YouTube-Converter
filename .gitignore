@@ -1,16 +1,12 @@
 # Top level program
 
-/Video
-/Audio
-/Playlist
 /converter.spec
 /build
 /dist
 
 # Source code
 
-source/Video
-source/Audio
-source/Playlist
-
 source/__pycache__
+source/build
+source/dist
+source/converter.spec
