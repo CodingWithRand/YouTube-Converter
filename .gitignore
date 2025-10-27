@@ -3,6 +3,7 @@
 /converter.spec
 /build
 /dist
+/.venv
 
 # Source code
 

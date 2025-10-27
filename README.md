@@ -53,6 +53,11 @@ Right now the progress on fixing some mistakes and glitches is probably 95% whic
 - Resolution option is added for video conversion.
 - Resolve the problem with bot detection by introducing oauth verification portal*
 
+## *__v1.5.1__*
+- Upgrade pytubefix to version 10.1.1
+- Upgrade to python 3.13 and made a .venv for this project (finally)
+- Fix node.exe and runner.js not found
+
 ## *__Additional Notes__*
 ### \* ###
 __Oauth verification__ is required for new users. They will receive a code from the message box that shows up when they do their first conversion, and the verification portal will be opened in their default browser. Users will have to enter the code in the input field, and then link their google account to a device (If you concern about your account security, you may use an alternative google account. But from what I've tried so far, nothing yet happened to my account.) After the verification process is finished, you may close the portal page, and click the "OK" button on the message box to continue the conversion. __DON'T CLICK THE "OK" BUTTON BEFORE FINISHING THE VERIFICATION PROCESS AS THE PROGRAM WILL SHOW AN ERROR!__

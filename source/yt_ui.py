@@ -10,7 +10,7 @@ import addition_script as adds
 # UI Addition Functions
 
 originfont = ("Arial", 15)
-selection = None
+conversion_selection = None
 
 def loading_progress(root, progressText, progression, max_percentage):
     global loading
@@ -57,6 +57,7 @@ def return_res_selectopt(event):
     res_selection = event.widget.get()
 
 def dircustomize(defaultdirtext):
+    global conversion_selection
     if conversion_selection is not None:
         directory = askdirectory()
         if directory == "":

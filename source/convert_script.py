@@ -1,5 +1,5 @@
 from pytubefix import *
-from moviepy.editor import *
+# from moviepy.editor import *
 from tkinter import *
 from time import sleep
 from tkinter import messagebox as mbox
