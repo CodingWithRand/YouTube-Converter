@@ -1,5 +1,4 @@
 from pytubefix import *
-# from moviepy.editor import *
 from tkinter import *
 from time import sleep
 from tkinter import messagebox as mbox
@@ -11,27 +10,29 @@ import re
 import traceback
 import threading
 
-"""
-After update your pytubefix package, please add the following code to innertube.py in pytubefix package:
+# The below is only needed if YouTube(url, use_oauth=True, allow_oauth_cache=True) is used.
 
-import sys
-import webbrowser
-from tkinter import messagebox
+# """
+# After update your pytubefix package, please add the following code to innertube.py in pytubefix package:
 
-def ui_oauth_verifier(verification_url: str, user_code: str):
-    webbrowser.open(verification_url)
-    messagebox.showinfo("OAuth Verification", f"OAuth portal has been opened in your default browser. Please enter the code: {user_code} and complete the verification process before clicking \"OK\" button. ")
+# import sys
+# import webbrowser
+# from tkinter import messagebox
 
-And replace _default_oauth_verifier function with the following code:
+# def ui_oauth_verifier(verification_url: str, user_code: str):
+#     webbrowser.open(verification_url)
+#     messagebox.showinfo("OAuth Verification", f"OAuth portal has been opened in your default browser. Please enter the code: {user_code} and complete the verification process before clicking \"OK\" button. ")
 
-def _default_oauth_verifier(verification_url: str, user_code: str):
-    if(sys.stdin is not None):
-        print(f'Please open {verification_url} and input code {user_code}')
-        input('Press enter when you have completed this step.')
-    else:
-        ui_oauth_verifier(verification_url, user_code)
+# And replace _default_oauth_verifier function with the following code:
+
+# def _default_oauth_verifier(verification_url: str, user_code: str):
+#     if(sys.stdin is not None):
+#         print(f'Please open {verification_url} and input code {user_code}')
+#         input('Press enter when you have completed this step.')
+#     else:
+#         ui_oauth_verifier(verification_url, user_code)
     
-"""
+# """
 
 def check_availability(asset):
     try:
@@ -139,7 +140,7 @@ def one_download(link, mode, res, directory, root):
             try:
                 def retrieve_link(): 
                     global f
-                    f = YouTube(link, use_oauth=True, allow_oauth_cache=True)
+                    f = YouTube(link)
                 real_progressing("Retrieving YouTube link...", 100, 2, retrieve_link)
             except Exception:
                 raiseErr("1404")
@@ -177,20 +178,20 @@ def one_download(link, mode, res, directory, root):
                     title = replace_unsupported_char(title)
                     title = file_sorting(file_dir, title)
                     if video is not None:
-                        vp = video.download(output_path=tempfile.gettempdir(), filename_prefix=title)
-                        ap = audio.download(output_path=tempfile.gettempdir(), filename_prefix=title)
+                        vp = video.download(output_path=tempfile.gettempdir())
+                        ap = audio.download(output_path=tempfile.gettempdir())
                         subprocess.run([get_ffmpeg_path(), '-i', vp, '-i', ap, '-c', 'copy', f'{file_dir}/{title}.mp4'])
                         os.remove(vp)
                         os.remove(ap)
                     else:
-                        audio.download(output_path=file_dir, filename_prefix=title)
+                        audio.download(output_path=file_dir)
                 if mode.lower() == "video" and video is not None:
                     real_progressing("Downloading the video...", 1000, 1, download, {'title': f.title, 'audio': audio, 'video': video})
                 elif mode.lower() == "audio":
                     real_progressing("Downloading the audio...", 1000, 1, download, {'title': f.title, 'audio': audio})
                 UI.loading.destroy()
                 root.attributes("-disabled", False)
-            except WindowsError:
+            except WindowsError as e:
                 raiseErr("3009")
                 # raise WindowsError
                 return
@@ -309,7 +310,7 @@ def playlist_download(link, mode, res, pldirectory, root):
             try:
                 def retrieve_link(): 
                     global p
-                    if(re.search("playlist", link)): p = Playlist(link, use_oauth=True, allow_oauth_cache=True)
+                    if(re.search("playlist", link)): p = Playlist(link)
                 real_progressing("Retrieving YouTube link...", 500, 2, retrieve_link)
             except Exception:
                 # raiseErr("1404")

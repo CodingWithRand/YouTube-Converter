@@ -6,6 +6,14 @@ This program create in Python programming language
 I use the pytube library for the conversion system and tkinter library for the whole UI.
 Right now the progress on fixing some mistakes and glitches is probably 95% which mean the program can be mostly used without facing any problem!
 
+# Program Features
+This program allow you to download content from YouTube, a video streaming platform, in form of a video (mp4) or an audio (m4a) using the YouTube video's url link. 
+
+For the video output format, you can select the output video's resolution as well. The resolution ranges from 144p up to 2160p (4k).
+
+But not every video can be downloaded as 4K, so if you download the video with the resolution that's not available, the program will download one with the highest available resolution. For example, you try to download a video in 4K, but the highest resolution is Full HD (1080p), the program will download the video with Full HD (1080p) resolution.
+
+Furthermore, you can download an entire playlist of videos too! And yes, you can choose to download them as videos or audios, but you can't (yet) choose to download some of them as videos, and others as audios.
 
 # Version Update Logs
 
@@ -58,6 +66,14 @@ Right now the progress on fixing some mistakes and glitches is probably 95% whic
 - Upgrade to python 3.13 and made a .venv for this project (finally)
 - Fix node.exe and runner.js not found
 
+## *__v1.5.2__*
+- Remove verification portal as it's no longer needed.
+- Fix ffmpeg.exe not found.
+- Fix the video naming problem.
+- Finally add [MIT license](./LICENSE) and describe program features (partially).
+
 ## *__Additional Notes__*
 ### \* ###
-__Oauth verification__ is required for new users. They will receive a code from the message box that shows up when they do their first conversion, and the verification portal will be opened in their default browser. Users will have to enter the code in the input field, and then link their google account to a device (If you concern about your account security, you may use an alternative google account. But from what I've tried so far, nothing yet happened to my account.) After the verification process is finished, you may close the portal page, and click the "OK" button on the message box to continue the conversion. __DON'T CLICK THE "OK" BUTTON BEFORE FINISHING THE VERIFICATION PROCESS AS THE PROGRAM WILL SHOW AN ERROR!__
+~~__Oauth verification__ is required for new users. They will receive a code from the message box that shows up when they do their first conversion, and the verification portal will be opened in their default browser. Users will have to enter the code in the input field, and then link their google account to a device (If you concern about your account security, you may use an alternative google account. But from what I've tried so far, nothing yet happened to my account.) After the verification process is finished, you may close the portal page, and click the "OK" button on the message box to continue the conversion. __DON'T CLICK THE "OK" BUTTON BEFORE FINISHING THE VERIFICATION PROCESS AS THE PROGRAM WILL SHOW AN ERROR!__~~
+
+*This feature was added in version 1.5, then removed in 1.5.2*

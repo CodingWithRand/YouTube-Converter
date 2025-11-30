@@ -6,7 +6,7 @@ from tkinter import *
 import addition_script as adds
 
 window = Tk()
-window.title("YouTube Converter v1.5.1")
+window.title("YouTube Converter v1.5.2")
 window.resizable(FALSE, FALSE)
 window.geometry(adds.sizing_positioning((800, 400), adds.win_center_pos(window, (800, 400))))
 window.iconbitmap("icon.ico")
