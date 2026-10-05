@@ -2,6 +2,8 @@ from pytubefix import *
 from tkinter import *
 from time import sleep
 from tkinter import messagebox as mbox
+
+import pytubefix
 from addition_script import get_ffmpeg_path
 import tempfile
 import os
@@ -169,7 +171,7 @@ def one_download(link, mode, res, directory, root):
                     traceback_str = traceback.format_exc()
                     raiseErr("9999")
                     mbox.showerror("System Error", f"{traceback_str}")
-                    # raise e
+                    raise e
                     return
 
             try:
